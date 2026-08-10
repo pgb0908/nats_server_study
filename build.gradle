@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.example.nats'
+version = '1.0.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'io.nats:jnats:2.21.1'
+}
+
+// Each example has its own main() — run with:
+//   ./gradlew run -PmainClass=nats.core.PublishSubscribeExample
+application {
+    mainClass = project.findProperty('mainClass') ?: 'nats.core.PublishSubscribeExample'
+}
+
+tasks.named('run') {
+    standardInput = System.in
+}
